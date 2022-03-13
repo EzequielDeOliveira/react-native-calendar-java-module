@@ -15,6 +15,8 @@ import {
   Text,
   useColorScheme,
   View,
+  NativeModules,
+  Button
 } from 'react-native';
 
 import {
@@ -25,7 +27,9 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-const Section = ({children, title}) => {
+import CalendarModule from './CalendarModule';
+
+const Section = ({ children, title }) => {
   const isDarkMode = useColorScheme() === 'dark';
   return (
     <View style={styles.sectionContainer}>
@@ -58,6 +62,10 @@ const App = () => {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
+  const onPress = () => {
+      CalendarModule.createCalendarEvent('testName', 'testLocation');
+  };
+
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
@@ -84,6 +92,11 @@ const App = () => {
           </Section>
           <LearnMoreLinks />
         </View>
+        <Button
+          title="Click to invoke your native module!"
+          color="#841584"
+          onPress={onPress}
+        />
       </ScrollView>
     </SafeAreaView>
   );
@@ -109,3 +122,4 @@ const styles = StyleSheet.create({
 });
 
 export default App;
+
