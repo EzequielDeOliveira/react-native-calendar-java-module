@@ -9,9 +9,10 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 
 public class CalendarModule extends ReactContextBaseJavaModule {
-    ReactApplicationContext context = getReactApplicationContext();
+    ReactApplicationContext context;
+
     CalendarModule(ReactApplicationContext context) {
-        super(context);
+        this.context = context;
     }
 
     @Override
